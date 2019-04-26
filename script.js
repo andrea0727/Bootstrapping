@@ -1,72 +1,85 @@
+
+
 //llama los objectos seleccionados
 let about = document.getElementById('about');
 let resume = document.getElementById('resume');
-let works = document.getElementById('works');
+let knowledge = document.getElementById('knowledge');
 let blog = document.getElementById('blog');
 let contact = document.getElementById('contact');
 let linkAbout = document.getElementById('linkAbout');
 let linkResume = document.getElementById('linkResume');
-let linkWorks = document.getElementById('linWorks');
+let linkKnowledge = document.getElementById('linkKnowledge');
 let linkBlog = document.getElementById('linkBlog');
 let linkContact = document.getElementById('linkContact');
-function eliminar(){
-    about.classList.remove('mostrarcaja');
-    resume.classList.remove('mostrarcaja');
-    works.classList.remove('mostrarcaja');
-    blog.classList.remove('mostrarcaja');
-    contact.classList.remove('mostrarcaja');
-}
-linkAbout.addEventListener('click',function(){
-    eliminar();
-    about.classList.add('mostrarcaja');
-    
-})
-linkResume.addEventListener('click',function(){
-    eliminar();
-    resume.classList.add('mostrarcaja');
-    
-})
-linkWorks.addEventListener('click',function(){
-    eliminar();
-    works.classList.add('mostrarcaja');
-    
-})
-linkBlog.addEventListener('click',function(){
-    eliminar();
-    blog.classList.add('mostrarcaja');
-    
-})
-linkContact.addEventListener('click',function(){
-    eliminar();
-    contact.classList.add('mostrarcaja');
-})
-    fetch('https://randomuser.me/api/').then ((val) => {
-return val.json();
-    }).then ((val) =>{
-        let name = document.getElementById('name');
-        let email = document.getElementById('profesion');
-        let userImage = document.getElementById('userImage');
-        let nameVal=val.results[0].name;
-        let emailVal=val.results[0].email;
-        let userImageVal=val.results[0].picture;
-        name.innerHTML=`${nameVal.tittle} ${nameVal.firts} ${nameVal.last}`;
-        email.innerHTML=`${emailVal}`;
-        userImage.src=`${userImageVal.large}`;
-        console.log(val);
-    })
 
-    fetch ("pepitout1",{
-method:"POST",
-mode: "cors",
-cache: "no-cache",
-credentials: "same-origin",
-headers: {
-   "Content-Type": "aplication/json", 
-},
-redirect:"follow",
-referrer: "no-referrer",
-body: JSON.stringify(data),
-    }) .then((val)=>{
-    }).catch((val)=>{
-    })
-    
+
+function remove() {
+    about.classList.remove('view');
+    linkAbout.classList.remove('selected');
+    resume.classList.remove('view');
+    linkResume.classList.remove('selected');
+    knowledge.classList.remove('view');
+    linkKnowledge.classList.remove('selected');
+    blog.classList.remove('view');
+    linkBlog.classList.remove('selected');
+    contact.classList.remove('view');
+    linkContact.classList.remove('selected');
+}
+
+linkAbout.addEventListener('click', function (e) {
+    if (window.innerWidth > 1040) {
+        e.preventDefault();
+        remove('about');
+        about.classList.add('view');
+        linkAbout.classList.add('selected');
+    }
+
+});
+linkResume.addEventListener('click', function (e) {
+    if (window.innerWidth > 1040) {
+        e.preventDefault();
+        remove();
+        resume.classList.add('view');
+        linkResume.classList.add('selected');
+    }
+})
+linkKnowledge.addEventListener('click', function (e) {
+    if (window.innerWidth > 1040) {
+        e.preventDefault();
+        remove();
+        knowledge.classList.add('view');
+        linkKnowledge.classList.add('selected');
+    }
+})
+linkBlog.addEventListener('click', function (e) {
+    if (window.innerWidth > 1040) {
+        e.preventDefault();
+        remove();
+        blog.classList.add('view');
+        linkBlog.classList.add('selected');
+    }
+})
+linkContact.addEventListener('click', function (e) {
+    if (window.innerWidth > 1040) {
+        e.preventDefault();
+        remove();
+        contact.classList.add('view');
+        linkContact.classList.add('selected');
+    }
+
+})
+
+var email = document.getElementById("email");
+var form = document.getElementById("form");
+
+email.addEventListener("input", function (event) {
+  if (email.validity.typeMismatch) {
+    email.setCustomValidity("I expect an e-mail, darling!");
+  } else {
+    email.setCustomValidity("");
+  }
+});
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+  });
